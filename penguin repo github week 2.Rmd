@@ -1,0 +1,32 @@
+---
+title: "second repo week 2"
+author: "tantawat"
+date: "2/12/2021"
+output: html_document
+---
+
+```{r packages, include=FALSE}
+library(tidyverse)
+library(palmerpenguins)   ###include the penguins dataset
+library(plotly)
+view(penguins)
+```
+
+```{r, include=FALSE}
+penguin_graph<-ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+                 geom_point(aes(size = body_mass_g, 
+                                color = species),
+                                alpha = 0.4) +
+                            scale_color_manual(values = c("purple","orange","black")) +
+                            theme_minimal() +
+                            labs(x = "bill length (mm)",
+                                y = "bill depth mm",
+                                title = "Penguin measurements")
+```
+
+
+```{r penguin, echo=FALSE}
+penguin_graph
+ggplotly(penguin_graph, tooltip = c("species"))
+```
+
